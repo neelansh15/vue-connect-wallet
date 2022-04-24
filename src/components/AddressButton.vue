@@ -28,7 +28,7 @@ defineProps<{
 .v-address-btn {
   border-radius: 11px;
   background-color: #eee;
-  padding: 0.75em 1.25em 0.75em 1em;
+  padding: 0.65em 1.25em 0.65em 1em;
 }
 .v-address-btn-clickable {
   cursor: pointer;
