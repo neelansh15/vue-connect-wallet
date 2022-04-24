@@ -24,7 +24,7 @@
   border-radius: 50%;
 }
 .ldio-gpklibk3god div {
-  animation: ldio-gpklibk3god 2.7027027027027026s linear infinite;
+  animation: ldio-gpklibk3god 2.5027027027027026s linear infinite;
   top: 50px;
   left: 50px;
 }

@@ -18,15 +18,17 @@ defineProps<{
 
 <template>
   <div class="v-btn-container">
-    <slot v-if="txnCount && connected" name="pending">
-      <div class="v-pending">
-        <slot name="spinner">
-          <Spinner />
-        </slot>
+    <transition name="pending-txn-transition">
+      <slot v-if="txnCount && connected" name="pending">
+        <div class="v-pending">
+          <slot name="spinner">
+            <Spinner />
+          </slot>
 
-        {{ txnCount }} pending
-      </div>
-    </slot>
+          {{ txnCount }} pending
+        </div>
+      </slot>
+    </transition>
     <slot name="connectWalletButton" v-if="!connected">
       <button v-bind="$attrs" class="v-btn v-connect-btn">
         <slot> Connect Wallet </slot>
@@ -60,12 +62,14 @@ defineProps<{
   display: flex;
   align-items: center;
   gap: 5px;
+  z-index: 9;
 }
 .v-btn {
   padding: 0.75em 1.5em;
   outline: none;
   border: none;
   transition: all 0.5s;
+  z-index: 10;
 }
 
 .v-connect-btn {
@@ -78,5 +82,16 @@ defineProps<{
 
 .v-connect-btn:hover {
   background-color: #2968e6;
+}
+
+.pending-txn-transition-enter-active,
+.pending-txn-transition-leave-active {
+  transition: all 0.75s ease-out;
+}
+
+.pending-txn-transition-enter-from,
+.pending-txn-transition-leave-to {
+  opacity: 0;
+  transform: translateX(50px);
 }
 </style>
