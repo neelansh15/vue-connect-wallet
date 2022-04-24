@@ -53,7 +53,7 @@ const props = defineProps({
     <slot v-else name="accountButton">
       <AddressButton v-bind="$attrs" :address="address">
         <slot name="identicon">
-          <Jazzicon :address="address" :diameter="15" style="margin-top: 2px" />
+          <Jazzicon :address="address" :diameter="15" style="margin-top: 3px" />
         </slot>
       </AddressButton>
     </slot>
