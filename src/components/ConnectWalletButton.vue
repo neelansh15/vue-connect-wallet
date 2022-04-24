@@ -16,7 +16,7 @@ import { ref } from "vue";
 //   address: string | undefined;
 // }>();
 
-defineProps({
+const props = defineProps({
   connected: {
     type: Boolean,
     default: false,
@@ -53,7 +53,7 @@ defineProps({
     <slot v-else name="accountButton">
       <AddressButton v-bind="$attrs" :address="address">
         <slot name="identicon">
-          <Jazzicon :address="address" :diameter="20" />
+          <Jazzicon :address="address" :diameter="15" style="margin-top: 2px" />
         </slot>
       </AddressButton>
     </slot>
@@ -77,11 +77,10 @@ defineProps({
   border-bottom-left-radius: 11px;
   display: flex;
   align-items: center;
-  gap: 5px;
+  gap: 8px;
   z-index: 9;
 }
 .v-btn {
-  padding: 0.75em 1.5em;
   outline: none;
   border: none;
   transition: all 0.5s;
@@ -89,6 +88,7 @@ defineProps({
 }
 
 .v-connect-btn {
+  padding: 0.75em 1.5em;
   cursor: pointer;
   background-color: #407df8;
   color: white;
@@ -102,7 +102,7 @@ defineProps({
 
 .pending-txn-transition-enter-active,
 .pending-txn-transition-leave-active {
-  transition: all 0.75s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .pending-txn-transition-enter-from,

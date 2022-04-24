@@ -17,8 +17,8 @@
 }
 .ldio-gpklibk3god div {
   position: absolute;
-  width: 60px;
-  height: 60px;
+  width: 50px;
+  height: 50px;
   border: 10px solid #ffffff;
   border-top-color: transparent;
   border-radius: 50%;
@@ -29,8 +29,8 @@
   left: 50px;
 }
 .loadingio-spinner-rolling-9f4hja5xffr {
-  width: 21px;
-  height: 21px;
+  width: 18px;
+  height: 18px;
   display: inline-block;
   overflow: hidden;
   background: none;
