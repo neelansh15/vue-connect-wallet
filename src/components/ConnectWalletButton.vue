@@ -41,7 +41,7 @@ const props = defineProps({
             <Spinner />
           </slot>
 
-          {{ txnCount }} pending
+          <span style="margin-top: 1px;"> {{ txnCount }} pending </span>
         </div>
       </slot>
     </transition>
@@ -69,7 +69,7 @@ const props = defineProps({
   font-size: 12px;
 }
 .v-pending {
-  padding: 0.75em 1.5em 0.7em 1em;
+  padding: 0.6em 1.5em 0.7em 1em;
   margin-right: -10px;
   background-color: #005eff;
   color: white;
