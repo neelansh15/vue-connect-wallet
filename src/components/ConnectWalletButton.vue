@@ -8,12 +8,28 @@ export default {
 import Spinner from "./Spinner.vue";
 import AddressButton from "./AddressButton.vue";
 import Jazzicon from "./Jazzicon.vue";
+import { ref } from "vue";
 
-defineProps<{
-  connected: boolean;
-  txnCount: number | undefined;
-  address: string | undefined;
-}>();
+// defineProps<{
+//   connected: boolean;
+//   txnCount: number | undefined;
+//   address: string | undefined;
+// }>();
+
+defineProps({
+  connected: {
+    type: Boolean,
+    default: false,
+  },
+  txnCount: {
+    type: Number,
+    default: 0,
+  },
+  address: {
+    type: String,
+    required: false,
+  },
+});
 </script>
 
 <template>
