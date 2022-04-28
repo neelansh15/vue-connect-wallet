@@ -1,5 +1,6 @@
 import { App } from "vue";
 import ConnectWalletButton from "./components/ConnectWalletButton.vue";
+import Jazzicon from "./components/Jazzicon.vue";
 
 import useMetaMaskWallet from "./utils/useMetaMaskWallet";
 import useWallet from "./utils/useWallet";
@@ -10,4 +11,9 @@ export default {
   },
 };
 
-export { ConnectWalletButton, useMetaMaskWallet, useWallet };
+/*
+Next:
+Dark mode option
+*/
+
+export { ConnectWalletButton, Jazzicon, useMetaMaskWallet, useWallet };

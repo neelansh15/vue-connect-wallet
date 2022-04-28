@@ -3,10 +3,11 @@ import { ref } from "vue";
 import ConnectWalletButton from "./components/ConnectWalletButton.vue";
 
 const txnCount = ref(1);
-const connected = ref(false);
+const address = ref("0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1");
 
 function toggleConnected() {
-  connected.value = !connected.value;
+  if (address.value && address.value.length > 0) address.value = "";
+  else address.value = "0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1";
 }
 </script>
 
@@ -19,9 +20,8 @@ function toggleConnected() {
     <div style="margin: auto">
       <ConnectWalletButton
         :txnCount="txnCount"
-        :connected="connected"
         @click="toggleConnected"
-        address="0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1"
+        :address="address"
       />
     </div>
   </div>

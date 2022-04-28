@@ -8,7 +8,7 @@ export default {
 import Spinner from "./Spinner.vue";
 import AddressButton from "./AddressButton.vue";
 import Jazzicon from "./Jazzicon.vue";
-import { ref } from "vue";
+import { computed } from "vue";
 
 // defineProps<{
 //   connected: boolean;
@@ -17,10 +17,6 @@ import { ref } from "vue";
 // }>();
 
 const props = defineProps({
-  connected: {
-    type: Boolean,
-    default: false,
-  },
   txnCount: {
     type: Number,
     default: 0,
@@ -30,6 +26,11 @@ const props = defineProps({
     required: false,
   },
 });
+
+const connected = computed(
+  () =>
+    props.address && props.address.length > 0 && props.address.startsWith("0x")
+);
 </script>
 
 <template>
@@ -41,7 +42,7 @@ const props = defineProps({
             <Spinner />
           </slot>
 
-          <span style="margin-top: 1px;"> {{ txnCount }} pending </span>
+          <span style="margin-top: 1px"> {{ txnCount }} pending </span>
         </div>
       </slot>
     </transition>
@@ -50,7 +51,7 @@ const props = defineProps({
         <slot> Connect Wallet </slot>
       </button>
     </slot>
-    <slot v-else name="accountButton">
+    <slot v-else name="addressButton">
       <AddressButton v-bind="$attrs" :address="address">
         <slot name="identicon">
           <Jazzicon :address="address" :diameter="15" style="margin-top: 3px" />
@@ -63,7 +64,6 @@ const props = defineProps({
 <style scoped>
 .v-btn-container {
   display: flex;
-  /* flex: 1 1 100px; */
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   font-size: 12px;
