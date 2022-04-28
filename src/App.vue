@@ -12,7 +12,11 @@ function toggleConnected() {
 </script>
 
 <template>
-  <h1>test</h1>
+  <pre>
+    <h1>
+      vue-connect-wallet
+  </h1>
+  </pre>
   <button @click="txnCount++">Add tx</button>
   <button @click="txnCount > 0 ? txnCount-- : null">Remove tx</button>
   <div style="margin-bottom: 1em"></div>
@@ -22,7 +26,14 @@ function toggleConnected() {
         :txnCount="txnCount"
         @click="toggleConnected"
         :address="address"
+        :dark="true"
       />
     </div>
   </div>
 </template>
+
+<style>
+body {
+  background-color: black;
+}
+</style>

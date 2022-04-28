@@ -23,7 +23,11 @@ const props = defineProps({
   },
   address: {
     type: String,
-    required: false,
+    required: true,
+  },
+  dark: {
+    type: Boolean,
+    default: false,
   },
 });
 
@@ -47,12 +51,16 @@ const connected = computed(
       </slot>
     </transition>
     <slot name="connectWalletButton" v-if="!connected">
-      <button v-bind="$attrs" class="v-btn v-connect-btn">
+      <button
+        v-bind="$attrs"
+        class="v-btn v-connect-btn"
+        :class="dark ? 'v-connect-btn-dark' : 'v-connect-btn-light'"
+      >
         <slot> Connect Wallet </slot>
       </button>
     </slot>
     <slot v-else name="addressButton">
-      <AddressButton v-bind="$attrs" :address="address">
+      <AddressButton v-bind="$attrs" :address="address" :dark="dark">
         <slot name="identicon">
           <Jazzicon :address="address" :diameter="15" style="margin-top: 3px" />
         </slot>
@@ -90,14 +98,25 @@ const connected = computed(
 .v-connect-btn {
   padding: 0.75em 1.5em;
   cursor: pointer;
-  background-color: #407df8;
-  color: white;
   border-radius: 10px;
   outline: none;
 }
 
-.v-connect-btn:hover {
+.v-connect-btn-light {
+  background-color: #407df8;
+  color: white;
+}
+
+.v-connect-btn-dark {
+  background-color: white;
+  color: #202020;
+}
+
+.v-connect-btn-light:hover {
   background-color: #2968e6;
+}
+.v-connect-btn-dark:hover {
+  background-color: #f5f3f3;
 }
 
 .pending-txn-transition-enter-active,
