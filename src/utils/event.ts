@@ -1,6 +1,6 @@
 import { onMounted, onUnmounted } from "vue";
 
-const useEventListener = (
+export const useEventListener = (
   target: any,
   eventName: string,
   callback: Function
@@ -8,5 +8,3 @@ const useEventListener = (
   onMounted(() => target.addEventListener(eventName, callback));
   onUnmounted(() => target.removeEventListener(eventName, callback));
 };
-
-export default useEventListener;
