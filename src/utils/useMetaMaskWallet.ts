@@ -1,5 +1,4 @@
 import { onMounted, onUnmounted } from "vue";
-import { useEventListener } from "./event";
 
 declare global {
   interface Window {
