@@ -1,3 +1,4 @@
+import { onMounted, onUnmounted } from "vue";
 import { useEventListener } from "./event";
 
 declare global {
@@ -9,6 +10,7 @@ declare global {
 const isMetaMask =
   typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
 
+// Wallet Connection and Utility functions
 async function connect() {
   if (isMetaMask) {
     try {
@@ -73,8 +75,33 @@ async function switchAccounts() {
   }
 }
 
+// Event handlers
+export const onAccountsChanged = (callback: Function) => {
+  if (isMetaMask) {
+    onMounted(() => {
+      window.ethereum.on("accountsChanged", callback);
+    });
+    onUnmounted(() => {
+      window.ethereum.removeListener("accountsChanged", callback);
+    });
+  }
+};
+
+export const onChainChanged = (callback: Function) => {
+  if (isMetaMask) {
+    onMounted(() => {
+      window.ethereum.on("chainChanged", callback);
+    });
+    onUnmounted(() => {
+      window.ethereum.removeListener("chainChanged", callback);
+    });
+  }
+};
+
 export const useMetaMaskWallet = () => ({
   connect,
   getAccounts,
   switchAccounts,
+  onAccountsChanged,
+  onChainChanged,
 });
