@@ -6,7 +6,8 @@ import { useMetaMaskWallet } from "./utils/useMetaMaskWallet";
 const txnCount = ref(1);
 // const address = ref("0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1");
 const address = ref("");
-const { connect, getAccounts, switchAccounts } = useMetaMaskWallet();
+const { connect, getAccounts, switchAccounts, onAccountsChanged } =
+  useMetaMaskWallet();
 
 function toggleConnected() {
   // if (address.value && address.value.length > 0) address.value = "";
