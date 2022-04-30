@@ -104,3 +104,5 @@ export const useMetaMaskWallet = () => ({
   onAccountsChanged,
   onChainChanged,
 });
+
+export default useMetaMaskWallet;

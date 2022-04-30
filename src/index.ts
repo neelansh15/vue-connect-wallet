@@ -2,7 +2,7 @@ import { App } from "vue";
 import ConnectWalletButton from "./components/ConnectWalletButton.vue";
 import Jazzicon from "./components/Jazzicon.vue";
 
-import * as useMetaMaskWallet from "./utils/useMetaMaskWallet";
+import useMetaMaskWallet from "./utils/useMetaMaskWallet";
 
 export default {
   install: (app: App, options: any) => {

@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import ConnectWalletButton from "./components/ConnectWalletButton.vue";
-import { useMetaMaskWallet } from "./utils/useMetaMaskWallet";
+import { ConnectWalletButton, useMetaMaskWallet } from "./index";
 
 const txnCount = ref(1);
 // const address = ref("0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1");
