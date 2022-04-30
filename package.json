@@ -28,7 +28,8 @@
   },
   "dependencies": {
     "color": "^3.1.0",
-    "mersenne-twister": "^1.1.0"
+    "mersenne-twister": "^1.1.0",
+    "vue-demi": "latest"
   },
   "devDependencies": {
     "@types/node": "^17.0.25",
@@ -37,5 +38,14 @@
     "vite": "^2.9.5",
     "vue": "^3.2.25",
     "vue-tsc": "^0.34.7"
+  },
+  "peerDependencies": {
+    "@vue/composition-api": "^1.0.0-rc.1",
+    "vue": "^2.0.0 || >=3.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@vue/composition-api": {
+      "optional": true
+    }
   }
 }

@@ -8,7 +8,7 @@ export default {
 import Spinner from "./Spinner.vue";
 import AddressButton from "./AddressButton.vue";
 import Jazzicon from "./Jazzicon.vue";
-import { computed } from "vue";
+import { computed } from "vue-demi";
 
 // defineProps<{
 //   connected: boolean;

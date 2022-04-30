@@ -6,7 +6,7 @@ const path = require("path");
 // https://vitejs.dev/config/
 export default defineConfig({
   optimizeDeps: {
-    exclude: ["@metamask/jazzicon"],
+    exclude: ["vue-demi"],
   },
   plugins: [vue()],
   build: {
