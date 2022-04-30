@@ -34,6 +34,7 @@ function toggleConnected() {
 
 <style>
 body {
+  color: white;
   background-color: black;
 }
 </style>
