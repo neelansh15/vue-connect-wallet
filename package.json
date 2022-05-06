@@ -1,7 +1,7 @@
 {
   "name": "vue-connect-wallet",
   "description": "Vue 2 & 3 Library with UI Button + Utils for Connecting a web3 Wallet",
-  "private": true,
+  "private": false,
   "version": "0.0.1",
   "scripts": {
     "dev": "vite",
