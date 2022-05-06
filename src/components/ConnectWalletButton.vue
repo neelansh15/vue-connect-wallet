@@ -10,12 +10,6 @@ import AddressButton from "./AddressButton.vue";
 import Jazzicon from "./Jazzicon.vue";
 import { computed } from "vue-demi";
 
-// defineProps<{
-//   connected: boolean;
-//   txnCount: number | undefined;
-//   address: string | undefined;
-// }>();
-
 const props = defineProps({
   txnCount: {
     type: Number,

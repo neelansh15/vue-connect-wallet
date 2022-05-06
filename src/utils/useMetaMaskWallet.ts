@@ -35,7 +35,6 @@ async function getAccounts() {
       const result: string[] = await window.ethereum.request({
         method: "eth_accounts",
       });
-      console.log("result of getAccounts", result);
       return result;
     } catch (e) {
       return {
@@ -60,7 +59,6 @@ async function switchAccounts() {
           },
         ],
       });
-      console.log("result of switchAccounts", result);
       return result;
     } catch (e) {
       return {

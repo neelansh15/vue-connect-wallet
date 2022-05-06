@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
+import dts from "vite-plugin-dts";
 
 const path = require("path");
 
@@ -8,7 +9,12 @@ export default defineConfig({
   optimizeDeps: {
     exclude: ["vue-demi"],
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    dts({
+      entryRoot: "./src/",
+    }),
+  ],
   build: {
     lib: {
       entry: path.resolve(__dirname, "src"),
