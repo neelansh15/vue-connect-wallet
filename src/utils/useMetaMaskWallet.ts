@@ -10,7 +10,6 @@ const isMetaMask =
   typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
 
 // Wallet Connection and Utility functions
-
 /**
  * Returns account address array if wallet is connected otherwise opens MetaMask popup
  */
@@ -22,14 +21,10 @@ async function connect() {
       });
       return result;
     } catch (e) {
-      return {
-        error: "Unable to execute request: " + e,
-      };
+      return "Error: Unable to execute request: " + e;
     }
   } else {
-    return {
-      error: "MetaMask not detected",
-    };
+    return "Error: MetaMask not detected";
   }
 }
 
@@ -44,14 +39,10 @@ async function getAccounts() {
       });
       return result;
     } catch (e) {
-      return {
-        error: "Unable to execute request: " + e,
-      };
+      return "Error: Unable to execute request: " + e;
     }
   } else {
-    return {
-      error: "MetaMask not detected",
-    };
+    return "Error: MetaMask not detected";
   }
 }
 
@@ -72,14 +63,10 @@ async function switchAccounts() {
       });
       return result;
     } catch (e) {
-      return {
-        error: "Unable to execute request: " + e,
-      };
+      return "Error: Unable to execute request: " + e;
     }
   } else {
-    return {
-      error: "MetaMask not detected",
-    };
+    return "Error: MetaMask not detected";
   }
 }
 
