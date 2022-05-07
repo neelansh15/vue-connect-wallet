@@ -10,6 +10,10 @@ const isMetaMask =
   typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
 
 // Wallet Connection and Utility functions
+
+/**
+ * Returns account address array if wallet is connected otherwise opens MetaMask popup
+ */
 async function connect() {
   if (isMetaMask) {
     try {
@@ -29,6 +33,9 @@ async function connect() {
   }
 }
 
+/**
+ * Get all connected accounts addresses. Returns an empty array if none connected
+ */
 async function getAccounts() {
   if (isMetaMask) {
     try {
@@ -48,6 +55,10 @@ async function getAccounts() {
   }
 }
 
+/**
+ * Opens a MetaMask popup to connect/disconnect from a list of user's accounts.
+ * The popup opens even if the user has already connected some accounts.
+ */
 async function switchAccounts() {
   if (isMetaMask) {
     try {
@@ -73,6 +84,13 @@ async function switchAccounts() {
 }
 
 // Event handlers
+/**
+ * Event handler for when the user changes the account in MetaMask  
+ * 
+ * Reference for callback function: https://docs.metamask.io/guide/ethereum-provider.html#events
+ * @param callback Function that takes accounts string array as an argument  
+ * Example: (accounts: string[]) => { ...do something }
+ */
 export const onAccountsChanged = (callback: Function) => {
   if (isMetaMask) {
     onMounted(() => {
@@ -84,6 +102,13 @@ export const onAccountsChanged = (callback: Function) => {
   }
 };
 
+/**
+ * Event handler for when the user changes the active chain in MetaMask  
+ * 
+ * Reference for callback function: https://docs.metamask.io/guide/ethereum-provider.html#events
+ * @param callback Function that takes chainId number as an argument  
+ * Example: (chainId: number) => { ...do something }
+ */
 export const onChainChanged = (callback: Function) => {
   if (isMetaMask) {
     onMounted(() => {
@@ -101,6 +126,7 @@ export const useMetaMaskWallet = () => ({
   switchAccounts,
   onAccountsChanged,
   onChainChanged,
+  isMetaMask,
 });
 
 export default useMetaMaskWallet;
