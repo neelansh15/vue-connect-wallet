@@ -91,7 +91,7 @@ async function switchAccounts() {
  * @param callback Function that takes accounts string array as an argument  
  * Example: (accounts: string[]) => { ...do something }
  */
-export const onAccountsChanged = (callback: Function) => {
+export const onAccountsChanged = (callback: (accounts: string[]) => void) => {
   if (isMetaMask) {
     onMounted(() => {
       window.ethereum.on("accountsChanged", callback);
@@ -109,7 +109,7 @@ export const onAccountsChanged = (callback: Function) => {
  * @param callback Function that takes chainId number as an argument  
  * Example: (chainId: number) => { ...do something }
  */
-export const onChainChanged = (callback: Function) => {
+export const onChainChanged = (callback: (chainId: number) => void) => {
   if (isMetaMask) {
     onMounted(() => {
       window.ethereum.on("chainChanged", callback);
