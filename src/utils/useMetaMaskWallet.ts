@@ -85,11 +85,10 @@ async function switchAccounts() {
 
 // Event handlers
 /**
- * Event handler for when the user changes the account in MetaMask  
- * 
- * Reference for callback function: https://docs.metamask.io/guide/ethereum-provider.html#events
- * @param callback Function that takes accounts string array as an argument  
- * Example: (accounts: string[]) => { ...do something }
+ * Event handler for when the user changes the account in MetaMask
+ *
+ * Reference for event handlers: https://docs.metamask.io/guide/ethereum-provider.html#events
+ * @param callback Function that takes accounts string array as an argument
  */
 export const onAccountsChanged = (callback: (accounts: string[]) => void) => {
   if (isMetaMask) {
@@ -103,11 +102,10 @@ export const onAccountsChanged = (callback: (accounts: string[]) => void) => {
 };
 
 /**
- * Event handler for when the user changes the active chain in MetaMask  
- * 
- * Reference for callback function: https://docs.metamask.io/guide/ethereum-provider.html#events
- * @param callback Function that takes chainId number as an argument  
- * Example: (chainId: number) => { ...do something }
+ * Event handler for when the user changes the active chain in MetaMask
+ *
+ * Reference for event handlers: https://docs.metamask.io/guide/ethereum-provider.html#events
+ * @param callback Function that takes chainId number as an argument
  */
 export const onChainChanged = (callback: (chainId: number) => void) => {
   if (isMetaMask) {
