@@ -6,12 +6,14 @@ declare global {
   }
 }
 
+// Wallet Connection and Utility functions
+
 const isMetaMask =
   typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
 
-// Wallet Connection and Utility functions
 /**
- * Returns account address array if wallet is connected otherwise opens MetaMask popup
+ * Returns account address array if wallet is connected otherwise opens MetaMask popup.
+ * On error, returns a single string with the error message
  */
 async function connect() {
   if (isMetaMask) {
@@ -30,6 +32,7 @@ async function connect() {
 
 /**
  * Get all connected accounts addresses. Returns an empty array if none connected
+ * On error, returns a single string with the error message
  */
 async function getAccounts() {
   if (isMetaMask) {
@@ -49,6 +52,7 @@ async function getAccounts() {
 /**
  * Opens a MetaMask popup to connect/disconnect from a list of user's accounts.
  * The popup opens even if the user has already connected some accounts.
+ * On error, returns a single string with the error message
  */
 async function switchAccounts() {
   if (isMetaMask) {
