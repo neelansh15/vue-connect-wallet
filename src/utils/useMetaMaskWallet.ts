@@ -22,8 +22,8 @@ async function connect() {
         method: "eth_requestAccounts",
       });
       return result;
-    } catch (e) {
-      return "Error: Unable to execute request: " + e;
+    } catch (e: any) {
+      return "Error: Unable to execute request: " + e.message;
     }
   } else {
     return "Error: MetaMask not detected";
@@ -41,8 +41,8 @@ async function getAccounts() {
         method: "eth_accounts",
       });
       return result;
-    } catch (e) {
-      return "Error: Unable to execute request: " + e;
+    } catch (e: any) {
+      return "Error: Unable to execute request: " + e.message;
     }
   } else {
     return "Error: MetaMask not detected";
@@ -66,8 +66,8 @@ async function switchAccounts() {
         ],
       });
       return result;
-    } catch (e) {
-      return "Error: Unable to execute request: " + e;
+    } catch (e: any) {
+      return "Error: Unable to execute request: " + e.message;
     }
   } else {
     return "Error: MetaMask not detected";

@@ -8,10 +8,11 @@ const address = ref("");
 const { connect, getAccounts, switchAccounts, onAccountsChanged } =
   useMetaMaskWallet();
 
-function toggleConnected() {
+async function toggleConnected() {
   if (address.value && address.value.length > 0) address.value = "";
   else address.value = "0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1";
-  connect();
+  const result = await connect();
+  console.log("result", result);
   // getAccounts();
   // switchAccounts();
 }
