@@ -1,8 +1,8 @@
 {
   "name": "vue-connect-wallet",
-  "description": "Vue Library with UI Button + Utils for Connecting a web3 Wallet (MetaMask) [TS Support]",
+  "description": "Vue UI Button + Utils for Connecting a web3 Wallet (TS Support)",
   "private": false,
-  "version": "0.1.2",
+  "version": "0.1.4",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",
@@ -26,6 +26,7 @@
     "email": "neelansh.m@somaiya.edu",
     "url": "https://github.com/neelansh15"
   },
+  "keywords": ["vue", "vue3", "vuejs", "connect wallet", "useWallet", "vue connect wallet", "vue-connect-wallet", "metamask", "connect"],
   "license": "Apache-2.0",
   "dependencies": {
     "color": "^3.1.0",
