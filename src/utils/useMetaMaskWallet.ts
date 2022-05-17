@@ -51,6 +51,7 @@ async function getAccounts() {
 
 /**
  * Opens a MetaMask popup to connect/disconnect from a list of user's accounts.
+ * Returns an array.
  * The popup opens even if the user has already connected some accounts.
  * On error, returns a single string with the error message
  */
