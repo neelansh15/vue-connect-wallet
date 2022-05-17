@@ -13,6 +13,19 @@ Provides a ready-made and fully-customizable UI button and utility functions for
 The button takes care of displaying the user's wallet address, their identicon / avatar and pending transactions.  
 Utility functions for connecting to a MetaMask wallet are provided. More wallets can be added in the future as per public request. Feel free to contribute yourself!  
 
+- [Getting started](#getting-started)
+  - [Installation](#installation)
+  - [Registering the component](#registering-the-component)
+- [Usage](#usage)
+  - [Button component](#button-component)
+    - [Simple usage](#simple-usage)
+    - [Advanced Usage](#advanced-usage)
+  - [MetaMask Utils](#metamask-utils)
+- [Example](#example)
+- [Contributing](#contributing)
+- [Miscellaneous](#miscellaneous)
+- [Author](#author)
+
 # Getting started
 This plugin uses `vue-demi` to support both Vue 2 and Vue 3, but usage in Vue 2 is prone to issues, so **Vue 3** is the recommended version of vue for this plugin.
 
