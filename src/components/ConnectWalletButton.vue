@@ -117,7 +117,7 @@ const connected = computed(
 }
 
 .v-connect-btn-dark {
-  background-color: white;
+  background-color: #f0efef;
   color: #202020;
 }
 
