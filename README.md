@@ -1,7 +1,10 @@
-(header image here)
+![](./images/VueConnectWallet.png)
 <h1 align="center">vue-connect-wallet</h1>
-(add shields here)
-  
+
+<div align="center">
+~[](https://img.shields.io/badge/Made%20with-Vue-brightgreen?style=for-the-badge&logo=vue.js)
+</div>  
+
 Bootstrap your decentralized applications by delegating the tedious and repetitive task of wallet connection and button design to this plugin.  
 
 Provides a ready-made and fully-customizable UI button and utility functions for connecting to a web3 wallet (MetaMask). It has built-in Typescript support and supports Dark mode.
