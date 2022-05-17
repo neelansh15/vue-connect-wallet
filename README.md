@@ -13,6 +13,7 @@ Provides a ready-made and fully-customizable UI button and utility functions for
 The button takes care of displaying the user's wallet address, their identicon / avatar and pending transactions.  
 Utility functions for connecting to a MetaMask wallet are provided. More wallets can be added in the future as per public request. Feel free to contribute yourself!  
 
+**Table of Contents**
 - [Getting started](#getting-started)
   - [Installation](#installation)
   - [Registering the component](#registering-the-component)
