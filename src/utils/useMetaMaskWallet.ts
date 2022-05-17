@@ -8,7 +8,7 @@ declare global {
 
 // Wallet Connection and Utility functions
 
-const isMetaMask =
+const isMetaMask: boolean =
   typeof window.ethereum !== "undefined" && window.ethereum.isMetaMask;
 
 /**

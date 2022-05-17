@@ -1,13 +1,15 @@
-// import { App } from "vue";
+import { App, install } from "vue-demi";
 import ConnectWalletButton from "./components/ConnectWalletButton.vue";
 import Jazzicon from "./components/Jazzicon.vue";
 
 import useMetaMaskWallet from "./utils/useMetaMaskWallet";
 
-// export default {
-//   install: (app: App, options: any) => {
-//     app.component("ConnectWalletButton", ConnectWalletButton);
-//   },
-// };
+install();
+
+export default {
+  install: (app: App) => {
+    app.component("ConnectWalletButton", ConnectWalletButton);
+  },
+};
 
 export { ConnectWalletButton, Jazzicon, useMetaMaskWallet };

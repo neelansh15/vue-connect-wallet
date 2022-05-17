@@ -69,7 +69,7 @@ const connected = computed(
       </button>
     </slot>
     <slot v-else name="addressButton">
-      <AddressButton v-bind="$attrs" :address="address" :dark="dark">
+      <AddressButton v-bind="$attrs" :address="address" :dark="dark" :title="address">
         <slot name="identicon">
           <Jazzicon :address="address" :diameter="15" style="margin-top: 3px" />
         </slot>
