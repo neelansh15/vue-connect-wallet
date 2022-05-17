@@ -25,6 +25,7 @@ Utility functions for connecting to a MetaMask wallet are provided. More wallets
 - [Example](#example)
 - [Contributing](#contributing)
 - [Miscellaneous](#miscellaneous)
+- [Stargazers](#stargazers)
 - [Author](#author)
 
 # Getting started
@@ -195,6 +196,9 @@ To develop in this repo, just clone it and run `yarn` to install all the depende
 
 **Note on Identicons (Jazzicon)**  
 This package comes with the Jazzicon from the library [vue3-jazzicon](https://github.com/samuveth/vue3-jazzicon). Installing it as a dependency in the plugin raised import errors due to which I bundled the component in this plugin itself.
+
+# Stargazers
+[![Stargazers repo roster for @neelansh15/vue-connect-wallet](https://reporoster.com/stars/neelansh15/vue-connect-wallet)](https://github.com/neelansh15/vue-connect-wallet/stargazers)
 
 # Author
 Hi! I am Neelansh Mathur. I am a freelancer specializing in Frontend development for Blockchain applications, and currently studying Computer Engineering. You can find out more about me at my social links.  
