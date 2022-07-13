@@ -162,7 +162,7 @@ wallet.switchAccounts(): Promise<string | string[]>;
  */
 wallet.addTokenToWallet: (symbol: string, address: string, imageURL: string, decimals?: number, type?: string) => Promise<void>;
 /**
- * Switch to a chain or add the chain if user does not have it
+ * Switch to a chain or add the chain if the user does not have it
  * @param chainId ChainID as an Integer
  * @param chainConfig (Optional) Chain Config Interface used for adding new chain
  */
