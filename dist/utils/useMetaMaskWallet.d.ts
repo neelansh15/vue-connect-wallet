@@ -60,11 +60,13 @@ export declare const onAccountsChanged: (callback: (accounts: string[]) => void)
  */
 export declare const onChainChanged: (callback: (chainId: number) => void) => void;
 export declare const useMetaMaskWallet: () => {
+    isMetaMask: boolean;
     connect: typeof connect;
     getAccounts: typeof getAccounts;
     switchAccounts: typeof switchAccounts;
+    addTokenToWallet: (symbol: string, address: string, imageURL: string, decimals?: number, type?: string) => Promise<void>;
+    switchOrAddChain: (chainId: number, chainConfig?: ChainConfig | undefined) => Promise<void>;
     onAccountsChanged: (callback: (accounts: string[]) => void) => void;
     onChainChanged: (callback: (chainId: number) => void) => void;
-    isMetaMask: boolean;
 };
 export default useMetaMaskWallet;

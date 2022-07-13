@@ -2123,6 +2123,47 @@ async function switchAccounts() {
     return "Error: MetaMask not detected";
   }
 }
+const addTokenToWallet = async (symbol, address, imageURL, decimals = 18, type = "ERC20") => {
+  await window.ethereum.request({
+    method: "wallet_watchAsset",
+    params: {
+      type,
+      options: {
+        address,
+        symbol,
+        decimals,
+        image: imageURL
+      }
+    }
+  });
+};
+const switchOrAddChain = async (chainId, chainConfig) => {
+  const chainIdHex = "0x" + parseInt(chainId.toString(), 10).toString(16);
+  try {
+    await window.ethereum.request({
+      method: "wallet_switchEthereumChain",
+      params: [{ chainId: chainIdHex }]
+    });
+  } catch (switchError) {
+    if (switchError.code === 4902 && chainConfig) {
+      try {
+        await window.ethereum.request({
+          method: "wallet_addEthereumChain",
+          params: [
+            {
+              chainId: chainIdHex,
+              chainConfig
+            }
+          ]
+        });
+      } catch (addError) {
+        throw new Error("Couldn't add network, it's possible that user has rejected the change");
+      }
+    } else {
+      throw new Error("Couldn't switch networks. Error: " + switchError);
+    }
+  }
+};
 const onAccountsChanged = (callback) => {
   if (isMetaMask) {
     onMounted(() => {
@@ -2144,12 +2185,14 @@ const onChainChanged = (callback) => {
   }
 };
 const useMetaMaskWallet = () => ({
+  isMetaMask,
   connect,
   getAccounts,
   switchAccounts,
+  addTokenToWallet,
+  switchOrAddChain,
   onAccountsChanged,
-  onChainChanged,
-  isMetaMask
+  onChainChanged
 });
 var index = {
   install: (app) => {
