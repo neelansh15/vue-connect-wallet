@@ -22,11 +22,11 @@ async function toggleConnected() {
   // getAccounts();
   // switchAccounts();
   // switchOrAddChain(56);
-  await addTokenToWallet(
-    "COMP",
-    "0x8505b9d2254A7Ae468c0E9dd10Ccea3A837aef5c",
-    "https://polygonscan.com/token/images/comp_32.png"
-  );
+  // await addTokenToWallet(
+  //   "COMP",
+  //   "0x8505b9d2254A7Ae468c0E9dd10Ccea3A837aef5c",
+  //   "https://polygonscan.com/token/images/comp_32.png"
+  // );
 }
 </script>
 
