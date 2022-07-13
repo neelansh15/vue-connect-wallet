@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { ConnectWalletButton, useMetaMaskWallet } from "./index";
+import { addTokenToWallet } from "./utils/useMetaMaskWallet";
 
 const txnCount = ref(1);
 // const address = ref("0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1");
@@ -21,6 +22,11 @@ async function toggleConnected() {
   // getAccounts();
   // switchAccounts();
   // switchOrAddChain(56);
+  await addTokenToWallet(
+    "COMP",
+    "0x8505b9d2254A7Ae468c0E9dd10Ccea3A837aef5c",
+    "https://polygonscan.com/token/images/comp_32.png"
+  );
 }
 </script>
 
