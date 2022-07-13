@@ -3,6 +3,16 @@ declare global {
         ethereum: any;
     }
 }
+interface ChainConfig {
+    chainName: string;
+    rpcUrls: string[];
+    nativeCurrency: {
+        name: string;
+        symbol: string;
+        decimals: number;
+    };
+    blockExplorerUrls: string[];
+}
 /**
  * Returns account address array if wallet is connected otherwise opens MetaMask popup.
  * On error, returns a single string with the error message
@@ -20,6 +30,21 @@ declare function getAccounts(): Promise<string | string[]>;
  * On error, returns a single string with the error message
  */
 declare function switchAccounts(): Promise<string | string[]>;
+/**
+ * Add a token to MetaMask
+ * @param symbol Symbol of the token, upto 5 characters
+ * @param address Address of the token
+ * @param imageURL String URL of the token image
+ * @param decimals (Optional) 18 by default
+ * @param type (Optional) ERC20 by default
+ */
+export declare const addTokenToWallet: (symbol: string, address: string, imageURL: string, decimals?: number, type?: string) => Promise<void>;
+/**
+ * Switch to a chain or add the chain if user does not have it
+ * @param chainId ChainID as an Integer
+ * @param chainConfig (Optional) Chain Config Interface used for adding new chain
+ */
+export declare const switchOrAddChain: (chainId: number, chainConfig?: ChainConfig | undefined) => Promise<void>;
 /**
  * Event handler for when the user changes the account in MetaMask
  *
