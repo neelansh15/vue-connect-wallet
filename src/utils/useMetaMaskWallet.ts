@@ -124,7 +124,7 @@ export const switchOrAddChain = async (
   chainId: number,
   chainConfig?: ChainConfig
 ): Promise<void> => {
-  const chainIdHex = parseInt(chainId.toString(), 10).toString(16);
+  const chainIdHex = "0x" + parseInt(chainId.toString(), 10).toString(16);
   try {
     await window.ethereum.request({
       method: "wallet_switchEthereumChain",
@@ -190,12 +190,14 @@ export const onChainChanged = (callback: (chainId: number) => void) => {
 };
 
 export const useMetaMaskWallet = () => ({
+  isMetaMask,
   connect,
   getAccounts,
   switchAccounts,
+  addTokenToWallet,
+  switchOrAddChain,
   onAccountsChanged,
   onChainChanged,
-  isMetaMask,
 });
 
 export default useMetaMaskWallet;
