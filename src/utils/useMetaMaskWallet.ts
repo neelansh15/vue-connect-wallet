@@ -139,7 +139,7 @@ export const switchOrAddChain = async (
           params: [
             {
               chainId: chainIdHex,
-              chainConfig,
+              ...chainConfig,
             },
           ],
         });
