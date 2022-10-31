@@ -28,6 +28,23 @@ async function toggleConnected() {
   //   "https://polygonscan.com/token/images/comp_32.png"
   // );
 }
+
+async function switchChain() {
+  try {
+    await switchOrAddChain(1666700000, {
+      chainName: "Harmony Testnet Shard 0",
+      nativeCurrency: {
+        name: "ONE",
+        symbol: "ONE",
+        decimals: 18,
+      },
+      rpcUrls: ["https://api.s0.b.hmny.io"],
+      blockExplorerUrls: ["https://explorer.pops.one"],
+    });
+  } catch (e) {
+    console.error(e);
+  }
+}
 </script>
 
 <template>
@@ -47,6 +64,10 @@ async function toggleConnected() {
         :address="address"
         :dark="false"
       />
+    </div>
+    <div>
+      <h1>Switch chain to Fantom Testnet</h1>
+      <button @click="switchChain">Switch Chain</button>
     </div>
   </div>
 </template>
