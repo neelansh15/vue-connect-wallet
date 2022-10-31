@@ -2,7 +2,7 @@
   "name": "vue-connect-wallet",
   "description": "Vue UI Button + Utils for Connecting a web3 Wallet (TS Support)",
   "private": false,
-  "version": "0.1.6",
+  "version": "0.1.7",
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc --noEmit && vite build",

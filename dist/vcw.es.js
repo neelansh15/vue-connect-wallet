@@ -2150,10 +2150,9 @@ const switchOrAddChain = async (chainId, chainConfig) => {
         await window.ethereum.request({
           method: "wallet_addEthereumChain",
           params: [
-            {
-              chainId: chainIdHex,
-              chainConfig
-            }
+            __spreadValues({
+              chainId: chainIdHex
+            }, chainConfig)
           ]
         });
       } catch (addError) {
