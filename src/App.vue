@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { ConnectWalletButton, useMetaMaskWallet } from "./index";
-import { addTokenToWallet } from "./utils/useMetaMaskWallet";
+import { ConnectWalletButton, useMetaMaskWallet, WalletConnect } from "./index";
 
 const txnCount = ref(1);
 // const address = ref("0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1");
@@ -45,6 +44,20 @@ async function switchChain() {
     console.error(e);
   }
 }
+
+async function connectWithWalletConnect() {
+  const walletConnect = new WalletConnect({
+    projectId: "06080076dd173617b8d6d6265bbc1113",
+    metadata: {
+      name: "some-name",
+      description: "some description",
+      url: window.location.host,
+      icons: [],
+    },
+  });
+
+  walletConnect.connect();
+}
 </script>
 
 <template>
@@ -66,8 +79,17 @@ async function switchChain() {
       />
     </div>
     <div>
-      <h1>Switch chain to Fantom Testnet</h1>
+      <h1>Switch to another chain</h1>
       <button @click="switchChain">Switch Chain</button>
+    </div>
+
+    <hr />
+
+    <div>
+      <h1>Testing WalletConnect</h1>
+      <button @click="connectWithWalletConnect">
+        Connect with WalletConnect
+      </button>
     </div>
   </div>
 </template>

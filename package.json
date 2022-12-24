@@ -26,9 +26,20 @@
     "email": "neelansh.m@somaiya.edu",
     "url": "https://github.com/neelansh15"
   },
-  "keywords": ["vue", "vue3", "vuejs", "connect wallet", "useWallet", "vue connect wallet", "vue-connect-wallet", "metamask", "connect"],
+  "keywords": [
+    "vue",
+    "vue3",
+    "vuejs",
+    "connect wallet",
+    "useWallet",
+    "vue connect wallet",
+    "vue-connect-wallet",
+    "metamask",
+    "connect"
+  ],
   "license": "Apache-2.0",
   "dependencies": {
+    "@walletconnect/auth-client": "^2.0.0",
     "color": "^3.1.0",
     "mersenne-twister": "^1.1.0",
     "vue-demi": "latest"

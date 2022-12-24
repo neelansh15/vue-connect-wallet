@@ -3,6 +3,7 @@ import ConnectWalletButton from "./components/ConnectWalletButton.vue";
 import Jazzicon from "./components/Jazzicon.vue";
 
 import useMetaMaskWallet from "./utils/useMetaMaskWallet";
+import WalletConnect from "./utils/WalletConnect";
 
 install();
 
@@ -12,4 +13,4 @@ export default {
   },
 };
 
-export { ConnectWalletButton, Jazzicon, useMetaMaskWallet };
+export { ConnectWalletButton, Jazzicon, useMetaMaskWallet, WalletConnect };
