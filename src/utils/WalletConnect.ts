@@ -1,50 +1,83 @@
-import { AuthClient, AuthClientTypes, generateNonce, IAuthClient } from '@walletconnect/auth-client'
+import SignClient from '@walletconnect/sign-client'
+import { SignClientTypes, SessionTypes } from '@walletconnect/types'
 
 class WalletConnect {
 
-    public address: string = ""
-    private options: AuthClientTypes.Options
-    private authClient!: IAuthClient
+    private options: SignClientTypes.Options
+    private signClient!: SignClient
 
-    constructor(options: AuthClientTypes.Options) {
+    constructor(options: SignClientTypes.Options) {
         this.options = options
     }
 
-    private async init(callback?: (address: string) => void) {
-        if (this.authClient) return this.authClient
+    private async init(): Promise<SignClient> {
+        if (this.signClient) return this.signClient
 
-        const authClient = await AuthClient.init(this.options)
-        this.authClient = authClient
+        const signClient = await SignClient.init(this.options)
+        this.signClient = signClient
 
-        authClient.on("auth_response", ({ params }) => {
-            if ("code" in params) {
-                console.error(params);
-                return;
-            }
-            if ("error" in params) {
-                console.error(params.error);
-                return;
-            }
-
-            this.address = params.result.p.iss.split(":")[4]
-            callback?.(this.address)
-        });
-
-        return authClient
+        return signClient
     }
 
-    public async connect(chainId = "eip155:1", callback?: (address: string) => void) {
-        const authClient = await this.init(callback)
+    /**
+     * Connect via WalletConnect Sign Client. Throws an error if unable to connect
+     * @returns {string} uri
+     */
+    public async connect(): Promise<{
+        uri: string
+        approval: () => Promise<SessionTypes.Struct>
+        provider: SignClient
+    }> {
+        const signClient = await this.init()
 
-        const { uri } = await authClient.request({
-            aud: window.location.href,
-            domain: window.location.hostname.split(".").slice(-2).join("."),
-            chainId,
-            type: 'eip4361',
-            nonce: generateNonce(),
+        const { uri, approval } = await signClient.connect({
+            requiredNamespaces: {
+                eip155: {
+                    methods: [
+                        "eth_sendTransaction",
+                        "eth_signTransaction",
+                        "eth_sign",
+                        "personal_sign",
+                        "eth_signTypedData",
+                    ],
+                    chains: ["eip155:1"],
+                    events: ["chainChanged", "accountsChanged"],
+                },
+            },
         })
 
-        console.log("URI for authentication", uri)
+        if (!uri) throw new Error("Unable to connect via WalletConnect")
+
+        // Set up event listeners
+        signClient.on("session_event", ({ params }) => {
+            console.log("SESSION_EVENT", params)
+        })
+
+        signClient.on("session_update", ({ topic, params }) => {
+            const { namespaces } = params;
+            const _session = signClient.session.get(topic);
+            // Overwrite the `namespaces` of the existing session with the incoming one.
+            const updatedSession = { ..._session, namespaces };
+
+            console.log("SESSION_UPDATE", updatedSession)
+            // Integrate the updated session state into your dapp state.
+            // onSessionUpdate(updatedSession);
+        });
+
+        signClient.on("session_delete", () => {
+            // Session was deleted -> reset the dapp state, clean up from user session, etc.
+            console.log("SESSION_DELETED")
+        });
+
+        return { uri, approval, provider: signClient }
+    }
+
+    public onAccountsChanged(callback: (accounts: string[]) => void) {
+
+    }
+
+    public onChainChanged(callback: (chainId: number) => void) {
+
     }
 }
 

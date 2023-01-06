@@ -1,10 +1,13 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { ConnectWalletButton, useMetaMaskWallet, WalletConnect } from "./index";
+import qrcode from "qrcode";
 
 const txnCount = ref(1);
-// const address = ref("0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1");
+
 const address = ref("");
+const wcUri = ref("");
+
 const {
   connect,
   getAccounts,
@@ -15,7 +18,7 @@ const {
 
 async function toggleConnected() {
   if (address.value && address.value.length > 0) address.value = "";
-  else address.value = "0x08DcE649f86AF45dA8648FaD31D1C33A617C52d1";
+  else address.value = "0xf475D99Be3241c69454eA8AF7B12F38078F697bc";
   const result = await connect();
   console.log("result", result);
   // getAccounts();
@@ -47,7 +50,7 @@ async function switchChain() {
 
 async function connectWithWalletConnect() {
   const walletConnect = new WalletConnect({
-    projectId: "06080076dd173617b8d6d6265bbc1113",
+    projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID,
     metadata: {
       name: "some-name",
       description: "some description",
@@ -56,7 +59,18 @@ async function connectWithWalletConnect() {
     },
   });
 
-  walletConnect.connect();
+  console.log("Beginning to connect via WalletConnect...");
+
+  const result = await walletConnect.connect();
+  console.log({ result });
+
+  wcUri.value = result.uri;
+
+  const canvas = document.getElementById("mainCanvas");
+
+  qrcode.toCanvas(canvas, result.uri, (error) => {
+    if (error) console.error("Error while painting canvas with QR Code", error);
+  });
 }
 </script>
 
@@ -91,6 +105,11 @@ async function connectWithWalletConnect() {
         Connect with WalletConnect
       </button>
     </div>
+
+    <div>
+      <p>QRCode generated:</p>
+      <canvas id="mainCanvas"></canvas>
+    </div>
   </div>
 </template>
 
@@ -99,4 +118,10 @@ async function connectWithWalletConnect() {
   color: white;
   background-color: black;
 } */
+
+#mainCanvas {
+  width: 400px;
+  height: 400px;
+  border: 1px solid lightskyblue;
+}
 </style>
