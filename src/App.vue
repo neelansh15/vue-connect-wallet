@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { ConnectWalletButton, useMetaMaskWallet, WalletConnect } from "./index";
-import qrcode from "qrcode";
+
+import WalletConnectQRCodeModal from "@walletconnect/qrcode-modal";
 
 const txnCount = ref(1);
 
 const address = ref("");
-const wcUri = ref("");
 
 const {
   connect,
@@ -52,10 +52,12 @@ async function connectWithWalletConnect() {
   const walletConnect = new WalletConnect({
     projectId: import.meta.env.VITE_WALLETCONNECT_PROJECT_ID,
     metadata: {
-      name: "some-name",
-      description: "some description",
+      name: "My DApp",
+      description: "Some description",
       url: window.location.host,
-      icons: [],
+      icons: [
+        "https://cdn.jsdelivr.net/gh/atomiclabs/cryptocurrency-icons@1a63530be6e374711a8554f31b17e4cb92c25fa5/128/icon/vibe.png",
+      ],
     },
   });
 
@@ -64,13 +66,7 @@ async function connectWithWalletConnect() {
   const result = await walletConnect.connect();
   console.log({ result });
 
-  wcUri.value = result.uri;
-
-  const canvas = document.getElementById("mainCanvas");
-
-  qrcode.toCanvas(canvas, result.uri, (error) => {
-    if (error) console.error("Error while painting canvas with QR Code", error);
-  });
+  WalletConnectQRCodeModal.open(result.uri, () => {});
 }
 </script>
 
@@ -105,11 +101,6 @@ async function connectWithWalletConnect() {
         Connect with WalletConnect
       </button>
     </div>
-
-    <div>
-      <p>QRCode generated:</p>
-      <canvas id="mainCanvas"></canvas>
-    </div>
   </div>
 </template>
 
@@ -120,8 +111,8 @@ async function connectWithWalletConnect() {
 } */
 
 #mainCanvas {
-  width: 400px;
-  height: 400px;
+  width: 300px;
+  height: 300px;
   border: 1px solid lightskyblue;
 }
 </style>

@@ -23,7 +23,7 @@ class WalletConnect {
      * Connect via WalletConnect Sign Client. Throws an error if unable to connect
      * @returns {string} uri
      */
-    public async connect(): Promise<{
+    public async connect(chains: string[] = ["eip155:1"]): Promise<{
         uri: string
         approval: () => Promise<SessionTypes.Struct>
         provider: SignClient
@@ -40,7 +40,7 @@ class WalletConnect {
                         "personal_sign",
                         "eth_signTypedData",
                     ],
-                    chains: ["eip155:1"],
+                    chains,
                     events: ["chainChanged", "accountsChanged"],
                 },
             },
@@ -68,6 +68,16 @@ class WalletConnect {
             // Session was deleted -> reset the dapp state, clean up from user session, etc.
             console.log("SESSION_DELETED")
         });
+
+        signClient.on("session_request", () => {
+            console.log("SESSION_REQUEST")
+        })
+        signClient.on("session_ping", () => {
+            console.log("SESSION_PING")
+        })
+        signClient.on("session_proposal", () => {
+            console.log("SESSION_PROPOSAL")
+        })
 
         return { uri, approval, provider: signClient }
     }
